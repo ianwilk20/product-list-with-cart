@@ -65,6 +65,8 @@ Then crop/optimize/edit your image however you like, add it to your project, and
 
 ### What I learned
 
+I learned the basics of tailwind CSS in this challenge. I never touched it in the past and thought it would be a perfect oppourtinity to learn the basics and see how my development process would benefit or be impaired by it.
+
 Use this section to recap over some of your major learnings while working through this project. Writing these out and providing code samples of areas you want to highlight is a great way to reinforce your own knowledge.
 
 To see how you can add code snippets, see below:
