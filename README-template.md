@@ -67,23 +67,15 @@ Then crop/optimize/edit your image however you like, add it to your project, and
 
 I learned the basics of tailwind CSS in this challenge. I never touched it in the past and thought it would be a perfect oppourtinity to learn the basics and see how my development process would benefit or be impaired by it.
 
-Use this section to recap over some of your major learnings while working through this project. Writing these out and providing code samples of areas you want to highlight is a great way to reinforce your own knowledge.
+I learned what flex-grow, flex-shrink, and flex-basis can do. I'm still not entirely satisfied with my understanding and will continue to look into this. 
+  - ```flex-grow: 0``` means the element will not grow to fill available space. It will only take up the space it needs based on its content.
+  - ```flex-grow: 1``` means the element can grow to fill available space. If there is extra space in the container, this element will expand to take it up.
+  - ```flex-shrink: 0``` prevents a flex item from shrinking when there is not enough space in the flex container.
+  - ```flex-shrink: 1``` means the element can shrink if necessary to avoid overflow. If the container is too small to fit all children, this element will shrink proportionally.
+  - ```flex-basis: auto``` sets the initial size of the element based on its content or width/height properties.
+Where this came up in the project was the Order Confirmed modal. I wanted the order items to take up any remaining space in the modal that wasn't already used by the checkmark, modal title and description, and Start over button. So I set those items to have a ```flex: 0 1 auto```, and the order items ```flex: 1 1 auto```. The challenge was that the Start over button would shrink and I wanted it to stay the height I defined for it of 3rem. The solution was to change the Start over button to have a ```flex-shrink: 0```. I think that means that it won't shrink.
 
-To see how you can add code snippets, see below:
-
-```html
-<h1>Some HTML code I'm proud of</h1>
-```
-```css
-.proud-of-this-css {
-  color: papayawhip;
-}
-```
-```js
-const proudOfThisFunc = () => {
-  console.log('🎉')
-}
-```
+I found a little issue with the increment and decrement pill. Each time I would increment or decrement the quantity of an item, the pill would resize slightly. My huntch was this was happening because the pill would resize to accomodate the changing quantity text. After some research, I learned how to prevent that. By adding a fixed, ex. 0.75rem, to the quantity text the pill no longer resizes when incrementing or decrementing the quantity.
 
 If you want more help with writing markdown, we'd recommend checking out [The Markdown Guide](https://www.markdownguide.org/) to learn more.
 

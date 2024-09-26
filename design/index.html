@@ -32,95 +32,123 @@
             }
         </style>
     </head>
-    <body class="p-6 font-redhat bg-zinc-50">
-        <h1 class="text-4xl font-bold mb-6">Desserts</h1>
+    <body id="page-body" class="relative font-redhat bg-orange-50">
+        <div class="p-6">
+            <h1 class="text-4xl font-bold mb-6">Desserts</h1>
+            <div class="flex flex-col gap-8">
+                <!-- Item container -->
+                <div id="card-container" class="flex flex-col gap-6"></div>
 
-        <!-- Item container -->
-        <div id="card-container" class="flex flex-col gap-6"></div>
-
-        <!-- Your Cart -->
-        <div
-            id="cart-container"
-            class="bg-white rounded-lg px-6 py-6 flex flex-col gap-8"
-        >
-            <h2 id="cart-your-cart" class="font-bold text-2xl text-rose-700">
-                Your Cart (0)
-            </h2>
-            <div id="cart-prompt" class="flex flex-col items-center gap-2">
-                <img src="./assets/images/illustration-empty-cart.svg" />
-                <p class="text-yellow-900 text-sm font-medium">
-                    Your added items will appear here
-                </p>
-            </div>
-            <div id="cart-items"></div>
-            <!-- <div id="cart-row" class="flex flex-col gap-4">
+                <!-- Your Cart -->
                 <div
-                    id="cart-item-container"
-                    class="flex items-center justify-between"
+                    id="cart-container"
+                    class="bg-white rounded-lg px-6 pt-6 flex flex-col gap-8"
                 >
-                    <div>
-                        <p><b>Classic Tiramisu</b></p>
-                        <div class="flex gap-2">
-                            <p class="text-rose-700 mr-2 font-medium">1x</p>
-                            <p class="text-slate-400">@ $5.50</p>
-                            <p class="text-slate-500 font-medium">$5.50</p>
-                        </div>
+                    <h2
+                        id="cart-your-cart"
+                        class="font-bold text-2xl text-rose-700"
+                    >
+                        Your Cart (0)
+                    </h2>
+                    <div
+                        id="cart-prompt"
+                        class="flex flex-col items-center gap-2"
+                    >
+                        <img
+                            src="./assets/images/illustration-empty-cart.svg"
+                            alt="Illustration of an empty shopping cart"
+                        />
+                        <p class="text-yellow-900 text-sm font-medium">
+                            Your added items will appear here
+                        </p>
+                    </div>
+                    <div id="cart-items"></div>
+                    <div
+                        id="cart-order-total"
+                        class="hidden flex justify-between items-center"
+                    >
+                        <p>Order Total</p>
+                        <p
+                            id="order-total-value"
+                            class="text-2xl text-black font-bold"
+                        ></p>
+                    </div>
+                    <div
+                        id="cart-carbon-neutral"
+                        class="hidden flex gap-2 items-center align-middle rounded-md bg-rose-50 h-12 p-4"
+                    >
+                        <img
+                            src="./assets/images/icon-carbon-neutral.svg"
+                            alt="Tree icon"
+                        />
+                        <p class="text-sm">
+                            This is a
+                            <span class="font-medium">carbon-neutral</span>
+                            delivery
+                        </p>
                     </div>
                     <button
-                        class="rounded-xl border border-slate-500 flex justify-center items-center w-5 h-5 p-0"
+                        id="cart-confirm-order"
+                        class="hidden rounded-full bg-rose-700 text-white font-medium h-12"
+                        onclick=""
                     >
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="10"
-                            height="10"
-                            fill="none"
-                            viewBox="0 0 10 10"
-                        >
-                            <path
-                                fill="#64748b"
-                                d="M8.375 9.375 5 6 1.625 9.375l-1-1L4 5 .625 1.625l1-1L5 4 8.375.625l1 1L6 5l3.375 3.375-1 1Z"
-                            />
-                        </svg>
+                        Confirm Order
                     </button>
                 </div>
-                <hr />
-            </div> -->
-            <div
-                id="cart-order-total"
-                class="hidden flex justify-between items-center"
-            >
-                <p>Order Total</p>
-                <p
-                    id="order-total-value"
-                    class="text-2xl text-black font-bold"
-                ></p>
             </div>
+        </div>
+        <div
+            id="order-confirmed"
+            class="hidden fixed bottom-0 flex items-end bg-black bg-opacity-25 h-full w-full z-10"
+            onclick="hideAndResetConfirmedOrder()"
+        >
             <div
-                id="cart-carbon-neutral"
-                class="hidden flex gap-2 items-center align-middle rounded-md bg-rose-50 h-12 p-4"
+                id="order-confirmed-modal"
+                class="bg-white rounded-l-lg rounded-r-lg h-[90vh] w-full z-20 py-8 px-6 flex flex-col gap-6"
             >
-                <img src="./assets/images/icon-carbon-neutral.svg" />
-                <p class="text-sm">
-                    This is a
-                    <span class="font-medium">carbon-neutral</span> delivery
-                </p>
+                <img
+                    src="./assets/images/icon-order-confirmed.svg"
+                    class="w-12 flex-initial"
+                    alt="Checkmark icon"
+                />
+                <div class="flex flex-col gap-3 flex-initial">
+                    <h2 class="text-4xl font-bold">
+                        Order <br />
+                        Confirmed
+                    </h2>
+                    <p class="text-slate-600 font-medium text-sm">
+                        We hope you enjoy your food!
+                    </p>
+                </div>
+                <div
+                    id="confirmed-cart"
+                    class="flex flex-col gap-4 p-4 bg-orange-50 rounded-lg overflow-scroll flex-auto"
+                ></div>
+                <button
+                    id="start-new-order"
+                    class="rounded-full bg-rose-700 text-white font-medium h-12 flex-shrink-0"
+                >
+                    Start New Order
+                </button>
             </div>
-            <button
-                id="cart-confirm-order"
-                class="hidden rounded-full bg-rose-700 text-white font-medium h-12"
-            >
-                Confirm Order
-            </button>
         </div>
 
         <div class="attribution my-12">
-            Challenge by
-            <a href="https://www.frontendmentor.io?ref=challenge"
+            Challenge by&nbsp;
+            <a
+                href="https://www.frontendmentor.io?ref=challenge"
+                target="_blank"
+                class="underline"
                 >Frontend Mentor</a
-            >. Coded by <a href="#">Your Name Here</a>.
+            >. Coded by&nbsp;
+            <a href="https://github.com/ianwilk20" class="underline"
+                >Ian Wilkinson</a
+            >.
         </div>
 
         <script>
+            const pageBody = document.getElementById('page-body')
+            const cartContainer = document.getElementById('cart-container')
             const yourCart = document.getElementById('cart-your-cart')
             const cartItems = document.getElementById('cart-items')
             const orderTotal = document.getElementById('order-total-value')
@@ -132,6 +160,12 @@
             )
             const confirmOrderButton =
                 document.getElementById('cart-confirm-order')
+            const confirmedOrder = document.getElementById('order-confirmed')
+            const confirmedOrderModal = document.getElementById(
+                'order-confirmed-modal'
+            )
+            const confirmedOrderCart = document.getElementById('confirmed-cart')
+            const startNewOrder = document.getElementById('start-new-order')
 
             function addItemToCart(id) {
                 console.log('In addItemToCart - id: ', id)
@@ -142,6 +176,7 @@
                 cartOrderTotalContainer.classList.remove('hidden')
                 carbonNeutralBanner.classList.remove('hidden')
                 confirmOrderButton.classList.remove('hidden')
+                cartContainer.classList.add('py-8')
 
                 if (currCart) {
                     parsedCurrCart = JSON.parse(currCart)
@@ -280,19 +315,38 @@
                         'cart',
                         JSON.stringify(cardWithoutItem)
                     )
-                    addToCartBtn = document.getElementById(
-                        `init-cart-btn-item-${id}`
-                    )
-                    cartIncDecBtn = document.getElementById(
-                        `cart-inc-dec-btn-item-${id}`
-                    )
-                    addToCartBtn.classList.remove('hidden')
-                    cartIncDecBtn.classList.add('hidden')
-                    itemImage.classList.remove('border-2', 'border-rose-700')
+                    if (cardWithoutItem.length === 0) {
+                        cartContainer.classList.remove('py-8')
+                    }
+                    resetItemDisplay(id)
                     window.dispatchEvent(
                         new StorageEvent('storage', { key: 'cart' })
                     )
                 }
+            }
+
+            function resetItemDisplay(id) {
+                addToCartBtn = document.getElementById(
+                    `init-cart-btn-item-${id}`
+                )
+                cartIncDecBtn = document.getElementById(
+                    `cart-inc-dec-btn-item-${id}`
+                )
+                itemImage = document.getElementById(`item-${id}-image`)
+                addToCartBtn.classList.remove('hidden')
+                cartIncDecBtn.classList.add('hidden')
+                itemImage.classList.remove('border-2', 'border-rose-700')
+            }
+
+            function resetCartDisplay() {
+                cartPrompt.classList.remove('hidden')
+                cartOrderTotalContainer.classList.add('hidden')
+                carbonNeutralBanner.classList.add('hidden')
+                confirmOrderButton.classList.add('hidden')
+                while (cartItems.firstChild) {
+                    cartItems.removeChild(cartItems.firstChild)
+                }
+                yourCart.textContent = `Your Cart (0)`
             }
 
             document.addEventListener('DOMContentLoaded', () => {
@@ -309,6 +363,7 @@
                     img.id = `item-${item.id}-image`
                     img.src = item.image.mobile
                     img.className = 'rounded-lg'
+                    img.alt = `Image of ${item.name}`
 
                     const btnAddToCart = document.createElement('button')
                     btnAddToCart.id = `init-cart-btn-item-${item.id}`
@@ -351,7 +406,7 @@
                         'hidden absolute bottom-0 translate-y-1/2 flex items-center gap-12 rounded-full py-3 px-3 bg-rose-700 text-white text-sm font-medium'
 
                     const decQuantity = document.createElement('button')
-                    decQuantity.class =
+                    decQuantity.classList =
                         'flex items-center justify-center w-5 h-5 border-2 border-white rounded-xl'
                     decQuantity.onclick = function () {
                         decrementQuantity(item.id)
@@ -371,10 +426,11 @@
 
                     const itemCount = document.createElement('p')
                     itemCount.id = `item-${item.id}-cart-count`
-                    itemCount.className = 'text-white font-normal'
+                    itemCount.className =
+                        'text-white font-normal w-3 text-center'
 
                     const incQuantity = document.createElement('button')
-                    incQuantity.class =
+                    incQuantity.classList =
                         'flex items-center justify-center w-5 h-5 border-2 border-white rounded-xl'
                     incQuantity.onclick = function () {
                         incrementQuantity(item.id)
@@ -438,17 +494,162 @@
                         refreshCartContents(curCart)
                     } else {
                         // Reset cart area
-                        cartPrompt.classList.remove('hidden')
-                        cartOrderTotalContainer.classList.add('hidden')
-                        carbonNeutralBanner.classList.add('hidden')
-                        confirmOrderButton.classList.add('hidden')
-                        while (cartItems.firstChild) {
-                            cartItems.removeChild(cartItems.firstChild)
-                        }
+                        resetCart()
                     }
                 }
                 return
             })
+
+            confirmOrderButton.addEventListener('click', function () {
+                confirmedOrder.classList.remove('hidden')
+                pageBody.classList.add('overflow-hidden')
+                curCart = JSON.parse(localStorage.getItem('cart'))
+                if (curCart.length && curCart.length > 0) {
+                    showConfirmedOrder(curCart)
+                } else {
+                    alert('There has been an error. Please try again later.')
+                }
+            })
+
+            confirmedOrderModal.addEventListener('click', function (e) {
+                e.stopPropagation()
+            })
+
+            startNewOrder.addEventListener('click', function () {
+                hideAndResetConfirmedOrder()
+            })
+
+            function showConfirmedOrder(items) {
+                let totalCost = 0
+
+                const confirmedcartitemsdiv = document.createElement('div')
+                confirmedcartitemsdiv.id = 'confirmed-cart-items'
+                confirmedcartitemsdiv.classList = 'space-y-4'
+                items.forEach((item, idx) => {
+                    foundItem = jsonData.find(
+                        (storedItem) => storedItem.id === item.id.toString()
+                    )
+
+                    const citemsdiv = document.createElement('div')
+                    citemsdiv.id = `confirmed-cart-item-${idx}`
+
+                    const ccrowdiv = document.createElement('div')
+                    ccrowdiv.classList = 'flex flex-col gap-4'
+                    ccrowdiv.id = `confirmed-cart-row-${idx}`
+
+                    const ccrowitemdiv = document.createElement('div')
+                    ccrowitemdiv.classList = 'flex items-center justify-between'
+                    ccrowitemdiv.id = `confirmed-cart-row-container-${idx}`
+
+                    const itemdetailsdiv = document.createElement('div')
+                    itemdetailsdiv.classList = 'flex gap-4 items-center'
+
+                    const itemthumbnail = document.createElement('img')
+                    itemthumbnail.src = foundItem.image.thumbnail
+                    itemthumbnail.alt = `Image of ${foundItem.name}`
+                    itemthumbnail.classList = 'aspect-square rounded-md w-14'
+
+                    const itemdescriptioncontainer =
+                        document.createElement('div')
+                    itemdescriptioncontainer.classList =
+                        'flex flex-col gap-1 w-4/6'
+
+                    const itemname = document.createElement('p')
+                    itemname.classList =
+                        'font-medium text-md overflow-ellipsis text-nowrap overflow-hidden'
+                    itemname.textContent = foundItem.name
+
+                    const itempricingdiv = document.createElement('div')
+                    itempricingdiv.classList = 'flex gap-2'
+
+                    const itemquantity = document.createElement('p')
+                    itemquantity.classList =
+                        'text-rose-700 mr-2 font-medium text-sm'
+                    itemquantity.textContent = `${item.quantity}x`
+
+                    const itemcost = document.createElement('p')
+                    itemcost.classList = 'text-slate-600 text-sm font-medium'
+                    itemcost.textContent =
+                        '@ ' +
+                        Intl.NumberFormat('en-US', {
+                            style: 'currency',
+                            currency: 'USD',
+                        }).format(foundItem.price)
+
+                    itempricingdiv.appendChild(itemquantity)
+                    itempricingdiv.appendChild(itemcost)
+
+                    itemdescriptioncontainer.appendChild(itemname)
+                    itemdescriptioncontainer.appendChild(itempricingdiv)
+
+                    itemdetailsdiv.appendChild(itemthumbnail)
+                    itemdetailsdiv.appendChild(itemdescriptioncontainer)
+
+                    ccrowitemdiv.appendChild(itemdetailsdiv)
+
+                    const itemtotalcost = document.createElement('p')
+                    itemtotalcost.classList =
+                        'text-slate-600 font-medium text-md'
+                    itemtotalcost.textContent = Intl.NumberFormat('en-US', {
+                        style: 'currency',
+                        currency: 'USD',
+                    }).format(foundItem.price * item.quantity)
+                    totalCost += foundItem.price * item.quantity
+
+                    ccrowitemdiv.appendChild(itemtotalcost)
+
+                    const lineBreak = document.createElement('hr')
+                    ccrowdiv.appendChild(ccrowitemdiv)
+                    ccrowdiv.appendChild(lineBreak)
+
+                    citemsdiv.appendChild(ccrowdiv)
+                    confirmedcartitemsdiv.appendChild(citemsdiv)
+                })
+
+                const cartordertotal = document.createElement('div')
+                cartordertotal.id = `confirmed-cart-order-total`
+                cartordertotal.classList = 'flex justify-between items-center'
+
+                const ordertotallabel = document.createElement('p')
+                ordertotallabel.classList = 'text-sm font-normal'
+                ordertotallabel.textContent = 'Order Total'
+
+                const ordertotalvalue = document.createElement('p')
+                ordertotalvalue.classList = 'text-2xl text-black font-bold'
+                ordertotalvalue.textContent = ''
+                ordertotalvalue.textContent = Intl.NumberFormat('en-US', {
+                    style: 'currency',
+                    currency: 'USD',
+                }).format(totalCost)
+
+                cartordertotal.appendChild(ordertotallabel)
+                cartordertotal.appendChild(ordertotalvalue)
+
+                confirmedOrderCart.appendChild(confirmedcartitemsdiv)
+                confirmedOrderCart.appendChild(cartordertotal)
+            }
+
+            function hideAndResetConfirmedOrder() {
+                confirmedOrder.classList.add('hidden')
+                pageBody.classList.remove('overflow-hidden')
+                // Clear items in order modal
+                while (confirmedOrderCart.firstChild) {
+                    confirmedOrderCart.removeChild(
+                        confirmedOrderCart.firstChild
+                    )
+                }
+                // Clear items in cart
+                resetCartDisplay()
+                // Remove items from cart
+                curCart = JSON.parse(localStorage.getItem('cart'))
+                if (curCart.length && curCart.length > 0) {
+                    localStorage.removeItem('cart')
+                }
+                //Reset any items
+                jsonData.forEach((item) => {
+                    resetItemDisplay(item.id)
+                })
+            }
 
             function refreshCartContents(items) {
                 while (cartItems.firstChild) {
