@@ -11,17 +11,9 @@
             sizes="32x32"
             href="./assets/images/favicon-32x32.png"
         />
-        <!-- <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link
-            href="https://fonts.googleapis.com/css2?family=Red+Hat+Text:ital,wght@0,300..700;1,300..700&display=swap"
-            rel="stylesheet"
-        /> -->
-        <!-- <script src="https://cdn.tailwindcss.com"></script> -->
 
         <title>Frontend Mentor | Product list with cart</title>
 
-        <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
         <style>
             .attribution {
                 font-size: 11px;
@@ -33,121 +25,128 @@
         </style>
     </head>
     <body id="page-body" class="relative font-redhat bg-orange-50">
-        <div class="p-6">
-            <h1 class="text-4xl font-bold mb-6">Desserts</h1>
-            <div class="flex flex-col gap-8">
-                <!-- Item container -->
-                <div id="card-container" class="flex flex-col gap-6"></div>
-
-                <!-- Your Cart -->
+        <main>
+            <div class="p-6 sm:p-10 md:p-14 lg:p-18">
+                <div class="flex flex-col gap-8 sm:justify-center lg:flex-row">
+                    <!-- Item container -->
+                    <div>
+                        <h1 class="text-3xl font-bold mb-6">Desserts</h1>
+                        <div
+                            id="product-container"
+                            class="flex flex-col gap-6 sm:grid sm:grid-cols-2 sm:max-w-[700px] md:grid-cols-3"
+                        ></div>
+                    </div>
+                    <div
+                        id="cart-container"
+                        class="bg-white rounded-lg px-6 pt-6 flex flex-col gap-8 h-fit min-w-80 lg:w-[25rem]"
+                    >
+                        <h2
+                            id="cart-your-cart"
+                            class="font-bold text-2xl text-rose-700"
+                        >
+                            Your Cart (0)
+                        </h2>
+                        <div
+                            id="cart-prompt"
+                            class="flex flex-col items-center gap-2"
+                        >
+                            <img
+                                src="./assets/images/illustration-empty-cart.svg"
+                                alt="Illustration of an empty shopping cart"
+                            />
+                            <p class="text-yellow-900 text-sm font-medium">
+                                Your added items will appear here
+                            </p>
+                        </div>
+                        <div id="cart-items"></div>
+                        <div
+                            id="cart-order-total"
+                            class="hidden flex justify-between items-center"
+                        >
+                            <p>Order Total</p>
+                            <p
+                                id="order-total-value"
+                                class="text-2xl text-black font-bold"
+                            ></p>
+                        </div>
+                        <div
+                            id="cart-carbon-neutral"
+                            class="hidden flex gap-2 items-center align-middle rounded-md bg-rose-50 h-12 p-4"
+                        >
+                            <img
+                                src="./assets/images/icon-carbon-neutral.svg"
+                                alt="Tree icon"
+                            />
+                            <p class="text-sm">
+                                This is a
+                                <span class="font-medium">carbon-neutral</span>
+                                delivery
+                            </p>
+                        </div>
+                        <button
+                            id="cart-confirm-order"
+                            class="hidden rounded-full bg-rose-700 text-white font-medium h-12 hover:bg-rose-900"
+                            onclick=""
+                        >
+                            Confirm Order
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div
+                id="order-confirmed"
+                class="hidden fixed bottom-0 flex items-end bg-black bg-opacity-25 h-full w-full z-10 md:justify-center md:items-center"
+                onclick="hideAndResetConfirmedOrder()"
+            >
                 <div
-                    id="cart-container"
-                    class="bg-white rounded-lg px-6 pt-6 flex flex-col gap-8"
+                    id="order-confirmed-modal"
+                    class="bg-white rounded-tl-lg rounded-tr-lg md:rounded-lg h-[90vh] w-full md:h-auto md:max-h-[70vh] md:w-3/5 lg:w-[30rem] xl:w-[35rem] z-20 py-8 px-6 flex flex-col gap-6"
                 >
-                    <h2
-                        id="cart-your-cart"
-                        class="font-bold text-2xl text-rose-700"
-                    >
-                        Your Cart (0)
-                    </h2>
-                    <div
-                        id="cart-prompt"
-                        class="flex flex-col items-center gap-2"
-                    >
-                        <img
-                            src="./assets/images/illustration-empty-cart.svg"
-                            alt="Illustration of an empty shopping cart"
-                        />
-                        <p class="text-yellow-900 text-sm font-medium">
-                            Your added items will appear here
+                    <img
+                        src="./assets/images/icon-order-confirmed.svg"
+                        class="w-12 flex-initial"
+                        alt="Checkmark icon"
+                    />
+                    <div class="flex flex-col gap-3 flex-initial">
+                        <h2
+                            class="text-4xl font-bold max-w-[12ch] sm:max-w-full"
+                        >
+                            Order Confirmed
+                        </h2>
+                        <p class="text-slate-600 font-medium text-sm">
+                            We hope you enjoy your food!
                         </p>
                     </div>
-                    <div id="cart-items"></div>
                     <div
-                        id="cart-order-total"
-                        class="hidden flex justify-between items-center"
-                    >
-                        <p>Order Total</p>
-                        <p
-                            id="order-total-value"
-                            class="text-2xl text-black font-bold"
-                        ></p>
-                    </div>
-                    <div
-                        id="cart-carbon-neutral"
-                        class="hidden flex gap-2 items-center align-middle rounded-md bg-rose-50 h-12 p-4"
-                    >
-                        <img
-                            src="./assets/images/icon-carbon-neutral.svg"
-                            alt="Tree icon"
-                        />
-                        <p class="text-sm">
-                            This is a
-                            <span class="font-medium">carbon-neutral</span>
-                            delivery
-                        </p>
-                    </div>
+                        id="confirmed-cart"
+                        class="flex flex-col gap-4 p-4 bg-orange-50 rounded-lg overflow-y-auto flex-initial md:flex-auto"
+                    ></div>
                     <button
-                        id="cart-confirm-order"
-                        class="hidden rounded-full bg-rose-700 text-white font-medium h-12"
-                        onclick=""
+                        id="start-new-order"
+                        class="rounded-full bg-rose-700 text-white font-medium h-12 flex-shrink-0 hover:bg-rose-900"
                     >
-                        Confirm Order
+                        Start New Order
                     </button>
                 </div>
             </div>
-        </div>
-        <div
-            id="order-confirmed"
-            class="hidden fixed bottom-0 flex items-end bg-black bg-opacity-25 h-full w-full z-10"
-            onclick="hideAndResetConfirmedOrder()"
-        >
-            <div
-                id="order-confirmed-modal"
-                class="bg-white rounded-l-lg rounded-r-lg h-[90vh] w-full z-20 py-8 px-6 flex flex-col gap-6"
-            >
-                <img
-                    src="./assets/images/icon-order-confirmed.svg"
-                    class="w-12 flex-initial"
-                    alt="Checkmark icon"
-                />
-                <div class="flex flex-col gap-3 flex-initial">
-                    <h2 class="text-4xl font-bold">
-                        Order <br />
-                        Confirmed
-                    </h2>
-                    <p class="text-slate-600 font-medium text-sm">
-                        We hope you enjoy your food!
-                    </p>
-                </div>
-                <div
-                    id="confirmed-cart"
-                    class="flex flex-col gap-4 p-4 bg-orange-50 rounded-lg overflow-scroll flex-auto"
-                ></div>
-                <button
-                    id="start-new-order"
-                    class="rounded-full bg-rose-700 text-white font-medium h-12 flex-shrink-0"
-                >
-                    Start New Order
-                </button>
-            </div>
-        </div>
 
-        <div class="attribution my-12">
-            Challenge by&nbsp;
-            <a
-                href="https://www.frontendmentor.io?ref=challenge"
-                target="_blank"
-                class="underline"
-                >Frontend Mentor</a
-            >. Coded by&nbsp;
-            <a href="https://github.com/ianwilk20" class="underline"
-                >Ian Wilkinson</a
-            >.
-        </div>
+            <div class="attribution mt-12 mb-4">
+                Challenge by&nbsp;
+                <a
+                    href="https://www.frontendmentor.io?ref=challenge"
+                    target="_blank"
+                    class="underline"
+                    >Frontend Mentor</a
+                >. Coded by&nbsp;
+                <a href="https://github.com/ianwilk20" class="underline"
+                    >Ian Wilkinson</a
+                >.
+            </div>
+        </main>
 
         <script>
             const pageBody = document.getElementById('page-body')
+            const cardContainer = document.getElementById('product-container')
             const cartContainer = document.getElementById('cart-container')
             const yourCart = document.getElementById('cart-your-cart')
             const cartItems = document.getElementById('cart-items')
@@ -265,7 +264,7 @@
                         // Found existing item in card already so decrement
                         if (foundItem.quantity === 1) {
                             removeFromCart(id)
-                            // Item no longer in card - add back initial styling
+                            // Item no longer in cart - add back initial styling
                             addToCartBtn = document.getElementById(
                                 `init-cart-btn-item-${id}`
                             )
@@ -306,8 +305,10 @@
             function removeFromCart(id) {
                 currCart = localStorage.getItem('cart')
                 if (currCart) {
+                    console.log('Item ID to remove: ', id)
                     parsedCurrCart = JSON.parse(currCart)
                     foundItem = parsedCurrCart.find((item) => item.id === id)
+                    console.log('Details of item to remove: ', foundItem)
                     cardWithoutItem = parsedCurrCart.filter(
                         (item) => item.id !== id
                     )
@@ -348,27 +349,45 @@
                 }
                 yourCart.textContent = `Your Cart (0)`
             }
-
+            // Note: remove button does not delete right cart item
             document.addEventListener('DOMContentLoaded', () => {
-                const cardContainer = document.getElementById('card-container')
-
                 jsonData.forEach((item) => {
                     const div0 = document.createElement('div')
-                    div0.className = 'flex flex-col gap-8'
+                    div0.className = 'flex flex-col gap-8 md:gap-10'
 
                     const div1 = document.createElement('div')
                     div1.className = 'flex justify-center relative'
 
+                    const picture = document.createElement('picture')
+                    picture.id = `item-${item.id}-image`
+                    picture.classList = 'rounded-lg'
+
+                    const sourceMobile = document.createElement('source')
+                    sourceMobile.srcset = item.image.mobile
+                    sourceMobile.media = '(max-width: 640px)'
+
+                    const sourceTablet = document.createElement('source')
+                    sourceTablet.srcset = item.image.tablet
+                    sourceTablet.media = '(max-width: 1024px)'
+
+                    const sourceDesktop = document.createElement('source')
+                    sourceDesktop.srcset = item.image.desktop
+                    sourceDesktop.media = '(min-width: 1025px)'
+
                     const img = document.createElement('img')
-                    img.id = `item-${item.id}-image`
                     img.src = item.image.mobile
-                    img.className = 'rounded-lg'
                     img.alt = `Image of ${item.name}`
+                    img.className = 'w-full rounded-[inherit]'
+
+                    picture.appendChild(sourceMobile)
+                    picture.appendChild(sourceTablet)
+                    picture.appendChild(sourceDesktop)
+                    picture.appendChild(img)
 
                     const btnAddToCart = document.createElement('button')
                     btnAddToCart.id = `init-cart-btn-item-${item.id}`
                     btnAddToCart.className =
-                        'absolute translate-y-1/2 bottom-0 border border-gray-500 rounded-full py-3 px-6 bg-white text-black text-sm font-medium inline-flex items-center gap-2'
+                        'absolute translate-y-1/2 bottom-0 border border-gray-500 rounded-full py-3 px-6 md:py-[0.65rem] md:px-5 bg-white text-black text-sm font-medium inline-flex items-center gap-2 hover:text-rose-700 hover:border-rose-700'
                     btnAddToCart.onclick = function () {
                         addItemToCart(item.id)
                     }
@@ -403,11 +422,11 @@
                     const div2 = document.createElement('div')
                     div2.id = `cart-inc-dec-btn-item-${item.id}`
                     div2.className =
-                        'hidden absolute bottom-0 translate-y-1/2 flex items-center gap-12 rounded-full py-3 px-3 bg-rose-700 text-white text-sm font-medium'
+                        'hidden absolute bottom-0 translate-y-1/2 flex items-center gap-12 md:gap-10 rounded-full py-3 px-3 bg-rose-700 text-white text-sm font-medium'
 
                     const decQuantity = document.createElement('button')
                     decQuantity.classList =
-                        'flex items-center justify-center w-5 h-5 border-2 border-white rounded-xl'
+                        'flex items-center justify-center w-5 h-5 border-2 border-white rounded-xl fill-white hover:bg-white hover:fill-rose-700'
                     decQuantity.onclick = function () {
                         decrementQuantity(item.id)
                     }
@@ -417,10 +436,10 @@
                         xmlns="http://www.w3.org/2000/svg"
                         width="12"
                         height="4"
-                        fill="none"
+                        class="fill-inherit"
                         viewBox="0 0 10 2"
                     >
-                        <path fill="#fff" d="M0 .375h10v1.25H0V.375Z" />
+                        <path class="fill-inherit" d="M0 .375h10v1.25H0V.375Z" />
                     </svg>`
                     decQuantity.innerHTML = decrementIcon
 
@@ -431,7 +450,7 @@
 
                     const incQuantity = document.createElement('button')
                     incQuantity.classList =
-                        'flex items-center justify-center w-5 h-5 border-2 border-white rounded-xl'
+                        'flex items-center justify-center w-5 h-5 border-2 border-white rounded-xl fill-white hover:bg-white hover:fill-rose-700'
                     incQuantity.onclick = function () {
                         incrementQuantity(item.id)
                     }
@@ -441,11 +460,11 @@
                         xmlns="http://www.w3.org/2000/svg"
                         width="12"
                         height="12"
-                        fill="none"
                         viewBox="0 0 10 10"
+                        class="fill-inherit"
                     >
                         <path
-                            fill="#fff"
+                            class="fill-inherit"
                             d="M10 4.375H5.625V0h-1.25v4.375H0v1.25h4.375V10h1.25V5.625H10v-1.25Z"
                         />
                     </svg>`
@@ -455,13 +474,13 @@
                     div2.appendChild(itemCount)
                     div2.appendChild(incQuantity)
 
-                    div1.appendChild(img)
+                    div1.appendChild(picture)
                     div1.appendChild(btnAddToCart)
                     div1.appendChild(div2)
 
                     const div3 = document.createElement('div')
                     const pCategory = document.createElement('p')
-                    pCategory.className = 'text-sm text-gray-400'
+                    pCategory.className = 'text-sm text-[#60646d]'
                     pCategory.innerText = item.category
                     const pItemName = document.createElement('p')
                     pItemName.className = 'text-base font-medium text-black'
@@ -490,12 +509,13 @@
                 if (event.key === 'cart') {
                     curCart = JSON.parse(localStorage.getItem('cart'))
                     console.log('Current cart: ', curCart)
-                    if (curCart.length && curCart.length > 0) {
-                        refreshCartContents(curCart)
-                    } else {
-                        // Reset cart area
-                        resetCart()
+                    if (!curCart || curCart.length === 0) {
+                        // Clear items in cart
+                        resetCartDisplay()
+                        // Reset store
+                        resetStore()
                     }
+                    refreshCartContents(curCart)
                 }
                 return
             })
@@ -552,7 +572,7 @@
                     const itemdescriptioncontainer =
                         document.createElement('div')
                     itemdescriptioncontainer.classList =
-                        'flex flex-col gap-1 w-4/6'
+                        'flex flex-col gap-1 w-4/6 flex-grow sm:w-auto'
 
                     const itemname = document.createElement('p')
                     itemname.classList =
@@ -611,7 +631,7 @@
                 cartordertotal.classList = 'flex justify-between items-center'
 
                 const ordertotallabel = document.createElement('p')
-                ordertotallabel.classList = 'text-sm font-normal'
+                ordertotallabel.classList = 'text-sm font-medium'
                 ordertotallabel.textContent = 'Order Total'
 
                 const ordertotalvalue = document.createElement('p')
@@ -640,11 +660,8 @@
                 }
                 // Clear items in cart
                 resetCartDisplay()
-                // Remove items from cart
-                curCart = JSON.parse(localStorage.getItem('cart'))
-                if (curCart.length && curCart.length > 0) {
-                    localStorage.removeItem('cart')
-                }
+                // Reset store
+                resetStore()
                 //Reset any items
                 jsonData.forEach((item) => {
                     resetItemDisplay(item.id)
@@ -666,7 +683,7 @@
                 // Build the cart display like you did for the items
                 items.forEach((item, idx) => {
                     console.log(jsonData)
-                    foundItem = jsonData.find(
+                    const foundItem = jsonData.find(
                         (storedItem) => storedItem.id === item.id.toString()
                     )
                     console.log(foundItem)
@@ -720,11 +737,13 @@
                     itemdiv.appendChild(itemdetailsdiv)
 
                     const removeItemBtn = document.createElement('button')
+                    removeItemBtn.id = `remove-${foundItem.id}`
                     removeItemBtn.onclick = function () {
                         removeFromCart(foundItem.id)
                     }
+                    console.log(removeItemBtn.onclick)
                     removeItemBtn.classList =
-                        'rounded-xl border border-slate-500 flex justify-center items-center w-5 h-5 p-0'
+                        'rounded-xl border border-slate-500 flex justify-center items-center w-5 h-5 p-0 fill-slate-500 hover:fill-slate-900 hover:border-slate-900 hover:border-2'
 
                     const removeIcon = `
                     <svg
@@ -733,9 +752,10 @@
                         height="10"
                         fill="none"
                         viewBox="0 0 10 10"
+                        class="fill-inherit"
                     >
                         <path
-                            fill="#64748b"
+                            class="fill-inherit"
                             d="M8.375 9.375 5 6 1.625 9.375l-1-1L4 5 .625 1.625l1-1L5 4 8.375.625l1 1L6 5l3.375 3.375-1 1Z"
                         />
                     </svg>
@@ -759,6 +779,14 @@
                     currency: 'USD',
                 }).format(totalCost)
             }
+
+            function resetStore() {
+                localStorage.removeItem('cart')
+            }
+
+            window.addEventListener('beforeunload', (event) => {
+                resetStore()
+            })
 
             const jsonData = [
                 {

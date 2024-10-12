@@ -77,6 +77,24 @@ Where this came up in the project was the Order Confirmed modal. I wanted the or
 
 I found a little issue with the increment and decrement pill. Each time I would increment or decrement the quantity of an item, the pill would resize slightly. My huntch was this was happening because the pill would resize to accomodate the changing quantity text. After some research, I learned how to prevent that. By adding a fixed, ex. 0.75rem, to the quantity text the pill no longer resizes when incrementing or decrementing the quantity.
 
+I learned that if you have images that you want to use for different screen sizes, you can create a ```<picture>``` element and have various ```<source>``` elements with the images that should be shown given certain screen sizes. Example: 
+
+```html
+<picture id="item-7-image" class="rounded-lg">
+  // Image to display on screens up to 640px wide
+  <source srcset="./assets/images/image-cake-mobile.jpg" media="(max-width: 640px)">
+  
+  // Image to display on screens between 641px to 1024px wide
+  <source srcset="./assets/images/image-cake-tablet.jpg" media="(max-width: 1024px)">
+
+  // Image to display on screens larger than 1025px
+  <source srcset="./assets/images/image-cake-desktop.jpg" media="(min-width: 1025px)">
+
+  // Fallback image
+  <img src="./assets/images/image-cake-mobile.jpg" alt="Image of Red Velvet Cake" class="w-full rounded-[inherit]">
+</picture>
+```
+
 If you want more help with writing markdown, we'd recommend checking out [The Markdown Guide](https://www.markdownguide.org/) to learn more.
 
 **Note: Delete this note and the content within this section and replace with your own learnings.**
