@@ -53,7 +53,7 @@ Mobile:
 
 ### Links
 
-- [Solution URL](https://github.com/ianwilk20/contact-form)
+- [Solution URL](https://github.com/ianwilk20/product-list-with-cart)
 - [Live Site URL](https://product-list-and-cart-ianwilk20.netlify.app/design/)
 
 ## My process
@@ -84,16 +84,16 @@ I learned that if you have images that you want to use for different screen size
 
 ```html
 <picture id="item-7-image" class="rounded-lg">
-  // Image to display on screens up to 640px wide
+  <!-- Image to display on screens up to 640px wide -->
   <source srcset="./assets/images/image-cake-mobile.jpg" media="(max-width: 640px)">
   
-  // Image to display on screens between 641px to 1024px wide
+  <!-- Image to display on screens between 641px to 1024px wide  -->
   <source srcset="./assets/images/image-cake-tablet.jpg" media="(max-width: 1024px)">
 
-  // Image to display on screens larger than 1025px
+  <!-- Image to display on screens larger than 1025px  -->
   <source srcset="./assets/images/image-cake-desktop.jpg" media="(min-width: 1025px)">
 
-  // Fallback image
+  <!-- Fallback image  -->
   <img src="./assets/images/image-cake-mobile.jpg" alt="Image of Red Velvet Cake" class="w-full rounded-[inherit]">
 </picture>
 ```
