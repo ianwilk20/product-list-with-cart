@@ -1,24 +1,25 @@
-# Frontend Mentor - Product list with cart
+# Frontend Mentor - Product list with cart solution
 
-![Design preview for the Product list with cart coding challenge](./preview.jpg)
+This is a solution to the [Product list with cart challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/product-list-with-cart-5MmqLVAp_d). Frontend Mentor challenges help you improve your coding skills by building realistic projects. 
 
-## Welcome! 👋
+## Table of contents
 
-Thanks for checking out this front-end coding challenge.
+- [Overview](#overview)
+  - [The challenge](#the-challenge)
+  - [Screenshot](#screenshot)
+  - [Links](#links)
+- [My process](#my-process)
+  - [Built with](#built-with)
+  - [What I learned](#what-i-learned)
+  - [Continued development](#continued-development)
+  - [Useful resources](#useful-resources)
+- [Author](#author)
 
-[Frontend Mentor](https://www.frontendmentor.io) challenges help you improve your coding skills by building realistic projects.
+## Overview
 
-**To do this challenge, you need a good understanding of HTML, CSS and JavaScript.**
+### The challenge
 
-## The challenge
-
-Your challenge is to build out this product list project that includes a functional cart and get it looking as close to the design as possible.
-
-You can use any tools you like to help you complete the challenge. So, if you have something you'd like to practice, feel free to give it a go.
-
-We provide the data for the products in a local `data.json` file. So you can use that to populate the UI dynamically if you choose.
-
-Your users should be able to: 
+Users should be able to:
 
 - Add items to the cart and remove them
 - Increase/decrease the number of items in the cart
@@ -27,74 +28,92 @@ Your users should be able to:
 - View the optimal layout for the interface depending on their device's screen size
 - See hover and focus states for all interactive elements on the page
 
-Want some support on the challenge? [Join our community](https://www.frontendmentor.io/community) and ask questions in the **#help** channel.
+### Screenshot
 
-## Where to find everything
+Desktop:
 
-Your task is to build out the project to the designs inside the `/design` folder. You will find both a mobile and a desktop version of the design. 
+![Desktop initial state](/design/solution-screenshots/sol-desktop-init.png)
 
-The designs are in JPG static format. Using JPGs will mean that you'll need to use your best judgment for styles such as `font-size`, `padding` and `margin`. 
+![Desktop items in cart state](/design/solution-screenshots/sol-desktop-cart.png)
 
-If you would like the Figma design file to gain experience using professional tools and build more accurate projects faster, you can [subscribe as a PRO member](https://www.frontendmentor.io/pro).
+![Desktop confirmed order state](/design/solution-screenshots/sol-desktop-confirmed.png)
 
-All the required assets for this project are in the `/assets` folder. The images are already exported for the correct screen size and optimized.
+Tablet:
 
-We also include variable and static font files for the required fonts for this project. You can choose to either link to Google Fonts or use the local font files to host the fonts yourself. Note that we've removed the static font files for the font weights that aren't needed for this project.
+![Desktop initial state](/design/solution-screenshots/sol-tablet-init.png)
 
-There is also a `style-guide.md` file containing the information you'll need, such as color palette and fonts.
+Mobile: 
 
-## Building your project
+![Mobile initial state](/design/solution-screenshots/sol-mobile-init.png)
 
-Feel free to use any workflow that you feel comfortable with. Below is a suggested process, but do not feel like you need to follow these steps:
+![Mobile items in cart state](/design/solution-screenshots/sol-mobile-cart.png)
 
-1. Initialize your project as a public repository on [GitHub](https://github.com/). Creating a repo will make it easier to share your code with the community if you need help. If you're not sure how to do this, [have a read-through of this Try Git resource](https://try.github.io/).
-2. Configure your repository to publish your code to a web address. This will also be useful if you need some help during a challenge as you can share the URL for your project with your repo URL. There are a number of ways to do this, and we provide some recommendations below.
-3. Look through the designs to start planning out how you'll tackle the project. This step is crucial to help you think ahead for CSS classes to create reusable styles.
-4. Before adding any styles, structure your content with HTML. Writing your HTML first can help focus your attention on creating well-structured content.
-5. Write out the base styles for your project, including general content styles, such as `font-family` and `font-size`.
-6. Start adding styles to the top of the page and work down. Only move on to the next section once you're happy you've completed the area you're working on.
+![Mobile confirmed order state](/design/solution-screenshots/sol-mobile-init.png)
 
-## Deploying your project
 
-As mentioned above, there are many ways to host your project for free. Our recommend hosts are:
+### Links
 
-- [GitHub Pages](https://pages.github.com/)
-- [Vercel](https://vercel.com/)
-- [Netlify](https://www.netlify.com/)
+- [Solution URL](https://github.com/ianwilk20/contact-form)
+- [Live Site URL](https://product-list-and-cart-ianwilk20.netlify.app/design/)
 
-You can host your site using one of these solutions or any of our other trusted providers. [Read more about our recommended and trusted hosts](https://medium.com/frontend-mentor/frontend-mentor-trusted-hosting-providers-bf000dfebe).
+## My process
 
-## Create a custom `README.md`
+### Built with
 
-We strongly recommend overwriting this `README.md` with a custom one. We've provided a template inside the [`README-template.md`](./README-template.md) file in this starter code.
+- Semantic HTML5 markup
+- Flexbox
+- CSS Grid
+- Mobile-first workflow
+- [Tailwind](https://tailwindcss.com/docs) - For styles
 
-The template provides a guide for what to add. A custom `README` will help you explain your project and reflect on your learnings. Please feel free to edit our template as much as you like.
+### What I learned
 
-Once you've added your information to the template, delete this file and rename the `README-template.md` file to `README.md`. That will make it show up as your repository's README file.
+I learned the basics of tailwind CSS in this challenge. I never touched it in the past and thought it would be a perfect oppourtinity to learn the basics and see how my development process would benefit or be impaired by it. I found that it saved me lots of time and later maintenance (adjusting existing styles for tablet and desktop) when writing css. On the other hand, there was a learning curve to know the basic utility classes and I found that the time I saved from writing and maintaining css was spend looking up classes in the Tailwind documentation. Likely, the benefit from using Tailwind will appear the more projects I do, but also in the maintainability of the css.
 
-## Submitting your solution
+I learned what flex-grow, flex-shrink, and flex-basis can do. I'm still not entirely satisfied with my understanding and will continue to look into this. 
+  - ```flex-grow: 0``` means the element will not grow to fill available space. It will only take up the space it needs based on its content.
+  - ```flex-grow: 1``` means the element can grow to fill available space. If there is extra space in the container, this element will expand to take it up.
+  - ```flex-shrink: 0``` prevents a flex item from shrinking when there is not enough space in the flex container.
+  - ```flex-shrink: 1``` means the element can shrink if necessary to avoid overflow. If the container is too small to fit all children, this element will shrink proportionally.
+  - ```flex-basis: auto``` sets the initial size of the element based on its content or width/height properties.
+Where this came up in the project was the Order Confirmed modal. I wanted the order items to take up any remaining space in the modal that wasn't already used by the checkmark, modal title and description, and Start over button. So I set those items to have a ```flex: 0 1 auto```, and the order items ```flex: 1 1 auto```. The challenge was that the Start over button would shrink and I wanted it to stay the height I defined for it of 3rem. The solution was to change the Start over button to have a ```flex-shrink: 0```. I think that means that it won't shrink.
 
-Submit your solution on the platform for the rest of the community to see. Follow our ["Complete guide to submitting solutions"](https://medium.com/frontend-mentor/a-complete-guide-to-submitting-solutions-on-frontend-mentor-ac6384162248) for tips on how to do this.
+I found a little issue with the increment and decrement pill. Each time I would increment or decrement the quantity of an item, the pill would resize slightly. My hunch was this was happening because the pill would resize to accomodate the changing quantity text. After some research, I learned how to prevent that. By adding a fixed, ex. 0.75rem, to the quantity text the pill no longer resizes when incrementing or decrementing the quantity.
 
-Remember, if you're looking for feedback on your solution, be sure to ask questions when submitting it. The more specific and detailed you are with your questions, the higher the chance you'll get valuable feedback from the community.
+I learned that if you have images that you want to use for different screen sizes, you can create a ```<picture>``` element and have various ```<source>``` elements with the images that should be shown given certain screen sizes. Example: 
 
-## Sharing your solution
+```html
+<picture id="item-7-image" class="rounded-lg">
+  // Image to display on screens up to 640px wide
+  <source srcset="./assets/images/image-cake-mobile.jpg" media="(max-width: 640px)">
+  
+  // Image to display on screens between 641px to 1024px wide
+  <source srcset="./assets/images/image-cake-tablet.jpg" media="(max-width: 1024px)">
 
-There are multiple places you can share your solution:
+  // Image to display on screens larger than 1025px
+  <source srcset="./assets/images/image-cake-desktop.jpg" media="(min-width: 1025px)">
 
-1. Share your solution page in the **#finished-projects** channel of our [community](https://www.frontendmentor.io/community). 
-2. Tweet [@frontendmentor](https://twitter.com/frontendmentor) and mention **@frontendmentor**, including the repo and live URLs in the tweet. We'd love to take a look at what you've built and help share it around.
-3. Share your solution on other social channels like LinkedIn.
-4. Blog about your experience building your project. Writing about your workflow, technical choices, and talking through your code is a brilliant way to reinforce what you've learned. Great platforms to write on are [dev.to](https://dev.to/), [Hashnode](https://hashnode.com/), and [CodeNewbie](https://community.codenewbie.org/).
+  // Fallback image
+  <img src="./assets/images/image-cake-mobile.jpg" alt="Image of Red Velvet Cake" class="w-full rounded-[inherit]">
+</picture>
+```
 
-We provide templates to help you share your solution once you've submitted it on the platform. Please do edit them and include specific questions when you're looking for feedback. 
+If you want more help with writing markdown, we'd recommend checking out [The Markdown Guide](https://www.markdownguide.org/) to learn more.
 
-The more specific you are with your questions the more likely it is that another member of the community will give you feedback.
+**Note: Delete this note and the content within this section and replace with your own learnings.**
 
-## Got feedback for us?
+### Continued development
 
-We love receiving feedback! We're always looking to improve our challenges and our platform. So if you have anything you'd like to mention, please email hi[at]frontendmentor[dot]io.
+I will continue to learn Tailwind as my first impressions with it were good and I can see the utility that it brings.
 
-This challenge is completely free. Please share it with anyone who will find it useful for practice.
+I'd be interested in adding TypeScript into my next challenge because I found that I wrote many JavaScript functions that delt with objects in this challenge. If a project grows beyond the scope of this one, I can see type safety being important, especially for preventing bugs.
 
-**Have fun building!** 🚀
+
+### Useful resources
+
+- [Understanding flex-grow, flex-shrink, and flex-basis ](https://css-tricks.com/understanding-flex-grow-flex-shrink-and-flex-basis/) - This helped me start to understand flex-grow, flex-shrink, and flex-basis.
+- [Tailwind Docs](https://tailwindcss.com/docs) - This is the documentation I used to help kickstart using Tailwind in my challenge.
+
+## Author
+
+- GitHub - [ianwilk20](https://github.com/ianwilk20)

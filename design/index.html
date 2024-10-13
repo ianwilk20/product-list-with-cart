@@ -71,7 +71,7 @@
                         </div>
                         <div
                             id="cart-carbon-neutral"
-                            class="hidden flex gap-2 items-center align-middle rounded-md bg-rose-50 h-12 p-4"
+                            class="hidden flex gap-2 items-center align-middle justify-center rounded-md bg-rose-50 h-12 p-4"
                         >
                             <img
                                 src="./assets/images/icon-carbon-neutral.svg"
@@ -167,7 +167,6 @@
             const startNewOrder = document.getElementById('start-new-order')
 
             function addItemToCart(id) {
-                console.log('In addItemToCart - id: ', id)
                 currCart = localStorage.getItem('cart')
 
                 // Class changes
@@ -181,22 +180,15 @@
                     parsedCurrCart = JSON.parse(currCart)
                     foundItem = parsedCurrCart.find((item) => item.id === id)
                     if (foundItem) {
-                        console.log('Add to cart: Found existing item in cart')
                         // Found existing item in card already so increment
                         incrementQuantity(id)
                     } else {
                         // Cart has items - this item is not already in cart
-                        console.log(
-                            'Add to cart: Did not find existing item in cart, adding now..'
-                        )
                         newCartItem = { id: id, quantity: 1 }
                         newCart = [...parsedCurrCart, newCartItem]
                         localStorage.setItem('cart', JSON.stringify(newCart))
                     }
                 } else {
-                    console.log(
-                        'Add to cart: No cart exists, creating cart and adding item'
-                    )
                     localStorage.setItem(
                         'cart',
                         JSON.stringify([{ id: id, quantity: 1 }])
@@ -222,26 +214,20 @@
             }
 
             function incrementQuantity(id) {
-                console.log('In incrementQuantity - id: ', id)
                 currCart = localStorage.getItem('cart')
                 if (currCart) {
                     parsedCurrCart = JSON.parse(currCart)
                     foundItem = parsedCurrCart.find((item) => item.id === id)
                     if (foundItem) {
-                        console.log(
-                            'Increment Quantity: Found item in card, incrementing'
-                        )
                         // Found existing item in card already so increment
                         newQuantity = ++foundItem.quantity
                         foundCartItem = {
                             id: foundItem.id,
                             quantity: newQuantity,
                         }
-                        console.log('Found cart item: ', foundCartItem)
                         newCart = parsedCurrCart.map((item) =>
                             item.id === id ? foundCartItem : item
                         )
-                        console.log('new cart: ', newCart)
                         localStorage.setItem('cart', JSON.stringify(newCart))
                         itemCount = document.getElementById(
                             `item-${id}-cart-count`
@@ -255,7 +241,6 @@
             }
 
             function decrementQuantity(id) {
-                console.log('In decrementQuantity - id: ', id)
                 currCart = localStorage.getItem('cart')
                 if (currCart) {
                     parsedCurrCart = JSON.parse(currCart)
@@ -305,10 +290,8 @@
             function removeFromCart(id) {
                 currCart = localStorage.getItem('cart')
                 if (currCart) {
-                    console.log('Item ID to remove: ', id)
                     parsedCurrCart = JSON.parse(currCart)
                     foundItem = parsedCurrCart.find((item) => item.id === id)
-                    console.log('Details of item to remove: ', foundItem)
                     cardWithoutItem = parsedCurrCart.filter(
                         (item) => item.id !== id
                     )
@@ -504,11 +487,8 @@
             })
 
             window.addEventListener('storage', (event) => {
-                console.log('In storage event listener')
-                console.log(event)
                 if (event.key === 'cart') {
                     curCart = JSON.parse(localStorage.getItem('cart'))
-                    console.log('Current cart: ', curCart)
                     if (!curCart || curCart.length === 0) {
                         // Clear items in cart
                         resetCartDisplay()
@@ -682,11 +662,9 @@
                 let totalCost = 0
                 // Build the cart display like you did for the items
                 items.forEach((item, idx) => {
-                    console.log(jsonData)
                     const foundItem = jsonData.find(
                         (storedItem) => storedItem.id === item.id.toString()
                     )
-                    console.log(foundItem)
                     const crowdiv = document.createElement('div')
                     crowdiv.classList =
                         'flex flex-col gap-4 [&:not(:first-child)]:mt-4'
@@ -741,7 +719,6 @@
                     removeItemBtn.onclick = function () {
                         removeFromCart(foundItem.id)
                     }
-                    console.log(removeItemBtn.onclick)
                     removeItemBtn.classList =
                         'rounded-xl border border-slate-500 flex justify-center items-center w-5 h-5 p-0 fill-slate-500 hover:fill-slate-900 hover:border-slate-900 hover:border-2'
 
