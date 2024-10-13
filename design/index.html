@@ -29,14 +29,14 @@
             <div class="p-6 sm:p-10 md:p-14 lg:p-18">
                 <div class="flex flex-col gap-8 sm:justify-center lg:flex-row">
                     <!-- Item container -->
-                    <div>
+                    <section>
                         <h1 class="text-3xl font-bold mb-6">Desserts</h1>
-                        <div
+                        <ul
                             id="product-container"
                             class="flex flex-col gap-6 sm:grid sm:grid-cols-2 sm:max-w-[700px] md:grid-cols-3"
-                        ></div>
-                    </div>
-                    <div
+                        ></ul>
+                    </section>
+                    <secton
                         id="cart-container"
                         class="bg-white rounded-lg px-6 pt-6 flex flex-col gap-8 h-fit min-w-80 lg:w-[25rem]"
                     >
@@ -58,7 +58,7 @@
                                 Your added items will appear here
                             </p>
                         </div>
-                        <div id="cart-items"></div>
+                        <ul id="cart-items"></ul>
                         <div
                             id="cart-order-total"
                             class="hidden flex justify-between items-center"
@@ -90,10 +90,10 @@
                         >
                             Confirm Order
                         </button>
-                    </div>
+                    </section>
                 </div>
             </div>
-            <div
+            <section
                 id="order-confirmed"
                 class="hidden fixed bottom-0 flex items-end bg-black bg-opacity-25 h-full w-full z-10 md:justify-center md:items-center"
                 onclick="hideAndResetConfirmedOrder()"
@@ -128,7 +128,7 @@
                         Start New Order
                     </button>
                 </div>
-            </div>
+            </section>
 
             <div class="attribution mt-12 mb-4">
                 Challenge by&nbsp;
@@ -335,8 +335,8 @@
             // Note: remove button does not delete right cart item
             document.addEventListener('DOMContentLoaded', () => {
                 jsonData.forEach((item) => {
-                    const div0 = document.createElement('div')
-                    div0.className = 'flex flex-col gap-8 md:gap-10'
+                    const li0 = document.createElement('li')
+                    li0.className = 'flex flex-col gap-8 md:gap-10'
 
                     const div1 = document.createElement('div')
                     div1.className = 'flex justify-center relative'
@@ -479,10 +479,10 @@
                     div3.appendChild(pItemName)
                     div3.appendChild(pItemCost)
 
-                    div0.appendChild(div1)
-                    div0.appendChild(div3)
+                    li0.appendChild(div1)
+                    li0.appendChild(div3)
 
-                    cardContainer.appendChild(div0)
+                    cardContainer.appendChild(li0)
                 })
             })
 
@@ -522,16 +522,16 @@
             function showConfirmedOrder(items) {
                 let totalCost = 0
 
-                const confirmedcartitemsdiv = document.createElement('div')
-                confirmedcartitemsdiv.id = 'confirmed-cart-items'
-                confirmedcartitemsdiv.classList = 'space-y-4'
+                const confirmedcartitemslist = document.createElement('ul')
+                confirmedcartitemslist.id = 'confirmed-cart-items'
+                confirmedcartitemslist.classList = 'space-y-4'
                 items.forEach((item, idx) => {
                     foundItem = jsonData.find(
                         (storedItem) => storedItem.id === item.id.toString()
                     )
 
-                    const citemsdiv = document.createElement('div')
-                    citemsdiv.id = `confirmed-cart-item-${idx}`
+                    const citemsli = document.createElement('li')
+                    citemsli.id = `confirmed-cart-item-${idx}`
 
                     const ccrowdiv = document.createElement('div')
                     ccrowdiv.classList = 'flex flex-col gap-4'
@@ -602,8 +602,8 @@
                     ccrowdiv.appendChild(ccrowitemdiv)
                     ccrowdiv.appendChild(lineBreak)
 
-                    citemsdiv.appendChild(ccrowdiv)
-                    confirmedcartitemsdiv.appendChild(citemsdiv)
+                    citemsli.appendChild(ccrowdiv)
+                    confirmedcartitemslist.appendChild(citemsli)
                 })
 
                 const cartordertotal = document.createElement('div')
@@ -625,7 +625,7 @@
                 cartordertotal.appendChild(ordertotallabel)
                 cartordertotal.appendChild(ordertotalvalue)
 
-                confirmedOrderCart.appendChild(confirmedcartitemsdiv)
+                confirmedOrderCart.appendChild(confirmedcartitemslist)
                 confirmedOrderCart.appendChild(cartordertotal)
             }
 
@@ -665,10 +665,10 @@
                     const foundItem = jsonData.find(
                         (storedItem) => storedItem.id === item.id.toString()
                     )
-                    const crowdiv = document.createElement('div')
-                    crowdiv.classList =
+                    const crowli = document.createElement('li')
+                    crowli.classList =
                         'flex flex-col gap-4 [&:not(:first-child)]:mt-4'
-                    crowdiv.id = `cart-row-${idx}`
+                    crowli.id = `cart-row-${idx}`
 
                     const citemdiv = document.createElement('div')
                     citemdiv.classList = 'flex items-center justify-between'
@@ -745,10 +745,10 @@
 
                     const lineBreak = document.createElement('hr')
 
-                    crowdiv.appendChild(citemdiv)
-                    crowdiv.appendChild(lineBreak)
+                    crowli.appendChild(citemdiv)
+                    crowli.appendChild(lineBreak)
 
-                    cartItems.appendChild(crowdiv)
+                    cartItems.appendChild(crowli)
                 })
 
                 orderTotal.textContent = Intl.NumberFormat('en-US', {
